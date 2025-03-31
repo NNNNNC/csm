@@ -61,14 +61,19 @@
                                     ["emoji" => "😀", "text" => "Strongly Agree"]
                                     ];
                                     @endphp
-                                    <th class="text-center" style="width: 40%; vertical-align: middle;"><h5>Questions</h5></th>
+                                    <th class="text-center" style="width: 40%; vertical-align: middle;">
+                                        <h5>Questions</h5>
+                                    </th>
                                     @foreach($ratings as $rating)
                                     <th style="width: 5%; text-align: center; vertical-align: top;">
-                                        <div class="d-flex flex-column align-items-center text-center" style="word-wrap: break-word; overflow-wrap: break-word; max-width: 100%;">
+                                        <div class="d-flex flex-column align-items-center text-center" style="height: 100%;">
                                             <span style="font-size: 1.5rem;">{{ $rating['emoji'] }}</span>
-                                            <small style="line-height: 1.2;">{{ $rating['text'] }}</small>
+                                            <div class="d-flex align-items-center justify-content-center flex-grow-1" style="width: 100%;">
+                                                <small>{{ $rating['text'] }}</small>
+                                            </div>
                                         </div>
                                     </th>
+
                                     @endforeach
                                 </tr>
                             </thead>

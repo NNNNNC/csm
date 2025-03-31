@@ -11,46 +11,46 @@
         </div>
     </div>
 
-    <div class="row mt-4 mb-4">
-        <div class="col">
-            <div class="card text-white bg-success h-100">
-                <div class="card-body">
+    <div class="row mt-4 mb-4 g-3 justify-content-center">
+        <div class="col-lg-2 col-md-6">
+            <div class="card text-white bg-success h-100 text-center">
+                <div class="card-body d-flex flex-column justify-content-center">
                     <h5 class="card-title fw-bold">Total Responses</h5>
                     <p class="card-text display-4" id="officeSurveyCount"></p>
                 </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="comment_card card text-white bg-primary h-100" data-bs-toggle="modal" data-bs-target="#commentsModal" style="cursor: pointer;">
-                <div class="card-body">
+        <div class="col-lg-2 col-md-6">
+            <div class="comment_card card text-white bg-primary h-100 text-center" data-bs-toggle="modal" data-bs-target="#commentsModal" style="cursor: pointer;">
+                <div class="card-body d-flex flex-column justify-content-center">
                     <h5 class="card-title fw-bold">Total Comments</h5>
                     <p class="card-text display-4" id="totalComments"></p>
                 </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="card text-white bg-info h-100">
-                <div class="card-body">
+        <div class="col-lg-3 col-md-6">
+            <div class="card text-white bg-info h-100 text-center">
+                <div class="card-body d-flex flex-column justify-content-center">
                     <h5 class="card-title fw-bold">Citizen's Charter Satisfaction</h5>
                     <p class="card-text display-4" id="ccSatisfaction"></p>
                 </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="card text-white bg-danger h-100">
-                <div class="card-body">
+        <div class="col-lg-2 col-md-6">
+            <div class="card text-white bg-danger h-100 text-center">
+                <div class="card-body d-flex flex-column justify-content-center">
                     <h5 class="card-title fw-bold">Service Satisfaction</h5>
                     <p class="card-text display-4" id="serviceSatisfaction"></p>
                 </div>
             </div>
         </div>
 
-        <div class="col">
-            <div class="card text-white bg-warning h-100">
-                <div class="card-body">
+        <div class="col-lg-2 col-md-6">
+            <div class="card text-white bg-warning h-100 text-center">
+                <div class="card-body d-flex flex-column justify-content-center">
                     <h5 class="card-title fw-bold">Overall Satisfaction</h5>
                     <p class="card-text display-4" id="overallSatisfaction"></p>
                 </div>
@@ -59,32 +59,45 @@
     </div>
 
 
-
     <div class="row">
-        <div class="col-md-3 ">
+        <div class="col-3">
             <div class="card">
                 <div class="card-body text-center">
                     <h4 class="card-title fw-bold">Sex Distribution</h4>
-                    <div style="width: 80%; margin: auto;">
+                    <div style="margin: auto; width: 100%; height: 100%;">
                         <canvas id="sexChart"></canvas>
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="col-4">
             <div class="card">
                 <div class="card-body text-center">
                     <h4 class="card-title fw-bold">Age Distribution</h4>
-                    <div style="width: 80%; margin: auto;">
+                    <div style="margin: auto; width: 80%; height: 100%;">
                         <canvas id="ageChart"></canvas>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="col-5">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h4 class="card-title fw-bold">Service Distribution</h4>
+                    <div class="container-fluid" style="width: 80%; height: 100%;">
+                        <canvas id="serviceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="row">
         <div class="col">
             <div class="card">
                 <div class="card-body text-center">
-                    <h4 class="card-title fw-bold">Client Type Distribution by Month</h4>
-                    <canvas id="clientTypeChart" height="195"></canvas>
+                    <h4 class="card-title fw-bold">Survey Respondents by Client Type</h4>
+                    <canvas id="clientTypeChart"></canvas>
                 </div>
             </div>
         </div>
@@ -111,24 +124,55 @@
                     <div class="d-flex justify-content-center">
                         <div class="row">
                             <div class="col-md-6">
-                                <ul class="list-unstyled">
-                                    <li><strong>SQD0:</strong> I am satisfied with the service that I availed.</li>
-                                    <li><strong>SQD1:</strong> I spent a reasonable amount of time for my transaction.</li>
-                                    <li><strong>SQD2:</strong> The office followed the transaction's requirements and steps.</li>
-                                    <li><strong>SQD3:</strong> The steps for my transaction were easy and simple.</li>
-
-                                </ul>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>SQD0:</strong></td>
+                                            <td>I am satisfied with the service that I availed.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>SQD1:</strong></td>
+                                            <td>I spent a reasonable amount of time for my transaction.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>SQD2:</strong></td>
+                                            <td>The office followed the transaction's requirements and steps.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>SQD3:</strong></td>
+                                            <td>The steps for my transaction were easy and simple.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>SQD4:</strong></td>
+                                            <td>I easily found information about my transaction.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                             <div class="col-md-6">
-                                <ul class="list-unstyled">
-                                    <li><strong>SQD4:</strong> I easily found information about my transaction.</li>
-                                    <li><strong>SQD5:</strong> I paid a reasonable amount of fees for my transaction.</li>
-                                    <li><strong>SQD6:</strong> I feel the office was fair to everyone, or "walang palakasan".</li>
-                                    <li><strong>SQD7:</strong> I was treated courteously by the staff.</li>
-                                    <li><strong>SQD8:</strong> I got what I needed from the government office.</li>
-                                </ul>
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>SQD5:</strong></td>
+                                            <td>I paid a reasonable amount of fees for my transaction.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>SQD6:</strong></td>
+                                            <td>I feel the office was fair to everyone, or "walang palakasan".</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>SQD7:</strong></td>
+                                            <td>I was treated courteously by the staff.</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>SQD8:</strong></td>
+                                            <td>I got what I needed from the government office.</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
+
                     </div>
 
                     <!-- Chart Canvas -->
@@ -152,30 +196,28 @@
                 <button type="button" class="btn-close" onclick="window.location.href='/admin'" aria-label="Close"></button>
             </div>
             <div class="modal-body" style="max-height: 600px; overflow-y: auto;">
-                <div>
-                    <div class="row">
-                        <div class="col">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="startDate">Start Date:</label>
-                                    <input type="date" id="startDate">
-                                </div>
-                                <div class="col">
-                                    <label for="endDate">End Date:</label>
-                                    <input type="date" id="endDate">
-                                </div>
-                            </div>
+
+
+                <div class="container">
+                    <div class="row mb-3">
+                        <div class="col d-flex flex-column">
+                            <label for="startDate" class="form-label"><strong>Start Date:</strong></label>
+                            <input type="date" id="startDate" class="form-control">
                         </div>
-                        <div class="col">
-                            <button onclick="filterComments()">Filter</button>
+                        <div class="col d-flex flex-column">
+                            <label for="endDate" class="form-label"><strong>End Date:</strong></label>
+                            <input type="date" id="endDate" class="form-control">
                         </div>
                     </div>
-
-
-
-
-                    
+                    <div class="row mb-4">
+                        <div class="col d-flex align-items-center justify-content-center">
+                            <button class="btn btn-primary" style="width: 100px;" onclick="filterComments()">Filter</button>
+                        </div>
+                    </div>
                 </div>
+
+
+
 
                 <ul id="commentsList" class="list-unstyled"></ul>
                 <ul id="commentsList" class="list-unstyled"></ul>
@@ -188,7 +230,7 @@
 
 
 <script>
-    let sexChart, ageChart, clientTypeChart, ratingsChart, sqdChart;
+    let sexChart, ageChart, clientTypeChart, ratingsChart, sqdChart, serviceChart;
 
     function createCharts(data, clientData) {
         if (sexChart) sexChart.destroy();
@@ -196,12 +238,14 @@
         if (clientTypeChart) clientTypeChart.destroy();
         if (ratingsChart) ratingsChart.destroy();
         if (sqdChart) sqdChart.destroy();
+        if (serviceChart) serviceChart.destroy();
 
         const ctxSex = document.getElementById("sexChart").getContext("2d");
         const ctxAge = document.getElementById("ageChart").getContext("2d");
         const ctxClientType = document.getElementById("clientTypeChart")?.getContext("2d");
         const ctxRatings = document.getElementById("ratingsChart").getContext("2d");
         const ctxSqd = document.getElementById("sqdChart")?.getContext("2d");
+        const ctxService = document.getElementById("serviceChart")?.getContext("2d");
 
         // Handle missing or undefined age_distribution
         const ageLabels = data.age_distribution ? Object.keys(data.age_distribution) : [];
@@ -318,13 +362,18 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: "right"
+                        position: "right",
+                        labels: {
+                            boxWidth: 15,
+                            font: {
+                                size: 14
+                            }
+                        }
                     }
                 }
             }
         });
 
-        // Doughnut Chart for Age Distribution
         ageChart = new Chart(ctxAge, {
             type: "doughnut",
             data: {
@@ -339,12 +388,51 @@
                 maintainAspectRatio: false,
                 plugins: {
                     legend: {
-                        position: "right"
+                        position: "right",
+                        labels: {
+                            boxWidth: 15,
+                            font: {
+                                size: 14
+                            }
+                        }
                     }
                 }
             }
         });
 
+        const service_labels = data.service_responses.map(item => item.name);
+        const service_values = data.service_responses.map(item => item.total_response);
+        const backgroundColors = [
+            '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
+            '#FF9F40', '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0',
+            '#9966FF', '#FF9F40', '#FF6384', '#36A2EB', '#FFCE56'
+        ];
+
+        serviceChart = new Chart(ctxService, {
+            type: "doughnut",
+            data: {
+                labels: service_labels,
+                datasets: [{
+                    data: service_values,
+                    backgroundColor: backgroundColors
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: "right",
+                        labels: {
+                            boxWidth: 15,
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                }
+            }
+        });
 
         if (clientData) {
             const groupedData = {};
@@ -398,7 +486,7 @@
                     scales: {
                         x: {
                             title: {
-                                display: true,
+                                display: false,
                                 text: "Current Year 2025"
                             }
                         },
@@ -510,7 +598,7 @@
                 return response.json();
             })
             .then(data => {
-                console.log("Fetched data:", data); // Debugging log
+                console.log("Fetched data:", data);
 
                 surveyCountElement.textContent = data.total_responses || "0";
                 commentCountElement.textContent = data.comments_count || "0";
@@ -525,32 +613,8 @@
                     createCharts(data, []);
                 }
 
-                // Populate comments modal
-                commentsList.innerHTML = ""; // Clear previous comments
-                if (data.email_comments && Array.isArray(data.email_comments)) {
-
-                    commentsList.style.listStyle = "none";
-
-                    data.email_comments.forEach(entry => {
-                        let email = entry.email ? entry.email : "Anonymous";
-                        let commentItem = document.createElement("li");
-                        commentItem.classList.add("border-bottom", "py-2");
-
-                        commentItem.innerHTML =
-                            `<p style="font-size: 16px;">
-                            <strong>${email}:</strong> <br>
-                            <small class="text-muted" style="font-size: 14px;">${entry.created_at}</small><br><br>
-                            <span style="font-size: 18px;">${entry.comments}</span>
-                            </p>`;
-                        commentsList.appendChild(commentItem);
-                    });
-                } else {
-                    console.warn("No email comments found or invalid format.");
-                    let noCommentItem = document.createElement("li");
-                    noCommentItem.classList.add("list-group-item", "text-muted");
-                    noCommentItem.textContent = "No comments available.";
-                    commentsList.appendChild(noCommentItem);
-                }
+                window.allComments = data.email_comments || [];
+                filterComments();
             })
             .catch(error => {
                 console.error("Error fetching survey data:", error);
@@ -562,22 +626,88 @@
             });
     }
 
-    // Ensure the element exists before adding an event listener
-    document.addEventListener("DOMContentLoaded", function() {
-        var officeFilter = document.getElementById("officeFilter");
-        if (officeFilter) {
-            officeFilter.addEventListener("change", function() {
-                fetchSurveyData(this.value);
-            });
-        } else {
-            console.error("Office filter dropdown not found.");
+    function filterComments() {
+        var commentsList = document.getElementById("commentsList");
+        var startDate = document.getElementById("startDate").value;
+        var endDate = document.getElementById("endDate").value;
+
+        if (!commentsList || !window.allComments) {
+            console.error("Comments list or data is not available.");
+            return;
         }
 
-        fetchSurveyData(""); // Fetch initial data on page load
+        commentsList.innerHTML = "";
 
+        if (!startDate || !endDate) {
+            console.warn("No date selected. Showing all comments.");
+            displayComments(window.allComments);
+            return;
+        }
+
+        let start = new Date(startDate);
+        let end = new Date(endDate);
+
+        let filteredComments = window.allComments.filter(entry => {
+            let commentDate = new Date(entry.created_at);
+            return commentDate >= start && commentDate <= end;
+        });
+
+        displayComments(filteredComments);
+    }
+
+    function displayComments(comments) {
+        var commentsList = document.getElementById("commentsList");
+        commentsList.innerHTML = "";
+
+        if (!comments || comments.length === 0) {
+            let noCommentItem = document.createElement("li");
+            noCommentItem.classList.add("list-group-item", "text-muted");
+            noCommentItem.textContent = "No comments available for the selected date range.";
+            commentsList.appendChild(noCommentItem);
+            return;
+        }
+
+        comments.forEach(entry => {
+            let email = entry.email ? entry.email : "Anonymous";
+            let commentText = entry.comments ? entry.comments : "No comment provided.";
+            let createdAt = entry.created_at ? new Date(entry.created_at).toLocaleString() : "Unknown Date";
+
+            let commentItem = document.createElement("li");
+            commentItem.classList.add("border-bottom", "py-2");
+
+            commentItem.innerHTML = `
+            <p style="font-size: 16px;">
+                <strong>${email}:</strong> <br>
+                <small class="text-muted" style="font-size: 14px;">${createdAt}</small><br><br>
+                <span style="font-size: 18px;">${commentText}</span>
+            </p>
+        `;
+            commentsList.appendChild(commentItem);
+        });
+    }
+
+    // Ensure the element exists before adding an event listener
+    document.addEventListener("DOMContentLoaded", function() {
+        // Initial chart rendering when the page loads
+        fetchSurveyData(""); // Or your desired initial fetch for the charts
+
+        // Hook into route changes or AJAX updates (e.g., when the office filter changes)
+        const rerouteEvent = new Event('chartRender');
+        window.addEventListener('chartRender', function() {
+            const officeFilter = document.getElementById("officeFilter");
+            if (officeFilter) {
+                officeFilter.addEventListener("change", function() {
+                    fetchSurveyData(this.value); // Trigger chart creation with new office id
+                });
+            }
+        });
+
+        // Trigger chart rendering after the page is loaded and content is potentially dynamic
+        window.dispatchEvent(rerouteEvent);
+
+        // Ensure comments modal works after content is updated
         var totalCommentsCard = document.querySelector(".comment_card");
         var commentsModal = document.getElementById("commentsModal");
-
         if (totalCommentsCard && commentsModal) {
             totalCommentsCard.addEventListener("click", function() {
                 let myModal = new bootstrap.Modal(commentsModal);

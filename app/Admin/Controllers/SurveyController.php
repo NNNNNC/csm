@@ -24,6 +24,7 @@ class SurveyController extends AdminController
         $grid->column('visibility', 'Visibility');
         $grid->column('helpfulness', 'Helpfulness');
         $grid->column('service_satisfaction', 'Service Satisfaction');
+        $grid->column('email', 'Email');
         $grid->column('comments', 'Comments');
 
         return $grid;
@@ -43,6 +44,7 @@ class SurveyController extends AdminController
         $form->text('visibility', 'Visibility');
         $form->text('helpfulness', 'Helpfulness');
         $form->text('service_satisfaction', 'Service Satisfaction');
+        $form->text('email', 'Email');
         $form->textarea('comments', 'Comments');
 
         return $form;

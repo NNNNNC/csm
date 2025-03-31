@@ -12,7 +12,7 @@ return [
     | login page.
     |
     */
-    'name' => 'Open Admin',
+    'name' => 'Survey Admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -23,7 +23,7 @@ return [
     | `img` tag, eg '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo' => '<b>Open</b> Admin',
+    'logo' => '<b><img src="images/psu_seal_black.png" alt="Admin logo" style="width: 40px; height: auto; margin-right: 5px;"></b> Survey Admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -35,7 +35,7 @@ return [
     | '<img src="http://logo-url" alt="Admin logo">'.
     |
     */
-    'logo-mini' => '<b>OA</b>',
+    'logo-mini' => '<b><img src="images/psu_seal_black.png" alt="Admin logo" style="width: 40px; height: auto;"></b>',
 
     /*
     |--------------------------------------------------------------------------
