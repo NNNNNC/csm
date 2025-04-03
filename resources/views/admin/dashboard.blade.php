@@ -1,3 +1,10 @@
+@if(session('reload'))
+<script>
+    sessionStorage.setItem('reload', true);
+    window.location.reload();
+</script>
+@endif
+
 <div style="width: 90%; margin:auto;">
     <div class="row">
         <div class="col-md-3">
@@ -84,7 +91,7 @@
             <div class="card">
                 <div class="card-body text-center">
                     <h4 class="card-title fw-bold">Service Distribution</h4>
-                    <div class="container-fluid" style="width: 80%; height: 100%;">
+                    <div class="container-fluid" style="height: 100%;">
                         <canvas id="serviceChart"></canvas>
                     </div>
                 </div>
@@ -96,8 +103,8 @@
         <div class="col">
             <div class="card">
                 <div class="card-body text-center">
-                    <h4 class="card-title fw-bold">Survey Respondents by Client Type</h4>
-                    <canvas id="clientTypeChart"></canvas>
+                    <h4 class="card-title fw-bold">Client Type Distribution</h4>
+                    <canvas id="clientTypeChart" height="80"></canvas>
                 </div>
             </div>
         </div>
@@ -230,6 +237,9 @@
 
 
 <script>
+    if (sessionStorage.getItem('reload')) {
+        sessionStorage.removeItem('reload'); // Clear sessionStorage after the reload
+    }
     let sexChart, ageChart, clientTypeChart, ratingsChart, sqdChart, serviceChart;
 
     function createCharts(data, clientData) {
@@ -434,72 +444,36 @@
             }
         });
 
-        if (clientData) {
-            const groupedData = {};
-            clientData.forEach(({
-                month,
-                client_type,
-                count
-            }) => {
-                if (!groupedData[month]) {
-                    groupedData[month] = {};
-                }
-                groupedData[month][client_type] = count;
-            });
+        console.log("data: ", clientData);
 
-            // Month mapping
-            const monthNames = [
-                "January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
+        // Define the correct order for legends
+        let clientTypes = ["Citizen", "Business", "Government"];
 
-            const months = Object.keys(groupedData)
-                .map(Number) // Convert to numbers for sorting
-                .sort((a, b) => a - b) // Sort numerically
-                .map(m => monthNames[m - 1]); // Convert to month names
+        // Map data according to the correct order
+        let formattedData = clientTypes.map(type => {
+            let found = clientData.find(item => item.client_type === type);
+            return found ? found.total_client : 0; // Default to 0 if missing
+        });
 
-            const clientTypes = [...new Set(clientData.map(d => d.client_type))];
-
-            // Define specific colors for each client type
-            const clientColors = {
-                "Business": "#3498db", // Blue
-                "Citizen": "#2ecc71", // Green
-                "Government": "#e74c3c" // Red
-            };
-
-            const datasets = clientTypes.map(type => ({
-                label: type,
-                data: months.map((month, index) => groupedData[index + 1]?.[type] || 0),
-                backgroundColor: clientColors[type] || "#95a5a6" // Default Gray if unknown type
-            }));
-
-
-
-            clientTypeChart = new Chart(ctxClientType, {
-                type: "bar",
-                data: {
-                    labels: months,
-                    datasets: datasets
-                },
-                options: {
-                    responsive: true,
-                    scales: {
-                        x: {
-                            title: {
-                                display: false,
-                                text: "Current Year 2025"
-                            }
-                        },
-                        y: {
-                            title: {
-                                display: true,
-                                text: "Number of Clients"
-                            }
-                        }
+        clientTypeChart = new Chart(ctxClientType, {
+            type: 'bar', // Horizontal bar chart
+            data: {
+                labels: clientTypes, // Labels in order: Citizen, Business, Government
+                datasets: [{
+                    label: 'Total Clients',
+                    data: formattedData,
+                    backgroundColor: ['#4CAF50', '#FF9800', '#2196F3'], // Colors match labels
+                }]
+            },
+            options: {
+                indexAxis: 'y', // This makes the bar chart horizontal
+                plugins: {
+                    legend: {
+                        display: false // Hides the legend
                     }
                 }
-            });
-        }
+            }
+        });
 
         // Step 1: Collect all unique SQD categories for the X-axis
         const sqdCategories = [...new Set(data.sqd_counts.map(item => item.category))];
@@ -598,7 +572,6 @@
                 return response.json();
             })
             .then(data => {
-                console.log("Fetched data:", data);
 
                 surveyCountElement.textContent = data.total_responses || "0";
                 commentCountElement.textContent = data.comments_count || "0";

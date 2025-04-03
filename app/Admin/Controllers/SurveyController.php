@@ -23,7 +23,15 @@ class SurveyController extends AdminController
         $grid->column('awareness', 'Awareness');
         $grid->column('visibility', 'Visibility');
         $grid->column('helpfulness', 'Helpfulness');
-        $grid->column('service_satisfaction', 'Service Satisfaction');
+        $grid->column('SQD0', 'SQD0');
+        $grid->column('SQD1', 'SQD1');
+        $grid->column('SQD2', 'SQD2');
+        $grid->column('SQD3', 'SQD3');
+        $grid->column('SQD4', 'SQD4');
+        $grid->column('SQD5', 'SQD5');
+        $grid->column('SQD6', 'SQD6');
+        $grid->column('SQD7', 'SQD7');
+        $grid->column('SQD8', 'SQD8');
         $grid->column('email', 'Email');
         $grid->column('comments', 'Comments');
 
@@ -43,7 +51,15 @@ class SurveyController extends AdminController
         $form->text('awareness', 'Awareness');
         $form->text('visibility', 'Visibility');
         $form->text('helpfulness', 'Helpfulness');
-        $form->text('service_satisfaction', 'Service Satisfaction');
+        $form->text('SQD0', 'SQD0');
+        $form->text('SQD1', 'SQD1');
+        $form->text('SQD2', 'SQD2');
+        $form->text('SQD3', 'SQD3');
+        $form->text('SQD4', 'SQD4');
+        $form->text('SQD5', 'SQD5');
+        $form->text('SQD6', 'SQD6');
+        $form->text('SQD7', 'SQD7');
+        $form->text('SQD8', 'SQD8');
         $form->text('email', 'Email');
         $form->textarea('comments', 'Comments');
 

@@ -19,9 +19,6 @@ class ServicesController extends AdminController
         $grid->column('office_id', 'Office')->display(function ($officeId) {
             return Office::find($officeId)?->name ?? 'N/A'; // Show office name if available
         })->sortable();
-        $grid->column('created_at', 'Created At')->sortable();
-        $grid->column('updated_at', 'Updated At')->sortable();
-
         return $grid;
     }
 
@@ -33,9 +30,6 @@ class ServicesController extends AdminController
         $form->select('office_id', 'Office')
             ->options(Office::pluck('name', 'id')) 
             ->required();
-
-        $form->display('created_at', 'Created At');
-        $form->display('updated_at', 'Updated At');
 
         return $form;
     }

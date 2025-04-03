@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Client Satisfaction Survey - Step 1')
+@section('title', 'Survey - Step 1')
 
 @section('content')
 
@@ -20,9 +20,11 @@
     .btn {
         font-weight: 700;
     }
-    .form-check-input{
+
+    .form-check-input {
         border-color: black;
     }
+
     input,
     select,
     textarea {
@@ -30,7 +32,7 @@
     }
 </style>
 
-<div class="d-flex justify-content-center align-items-center" style="margin-top: 150px;">
+<div class="d-flex justify-content-center align-items-center p-5" style="margin-top: 150px;">
     <div class="container shadow p-4 rounded bg-white" style="max-width: 800px;">
         <h1 class="text-center">Client Satisfaction Survey - Step 1</h1>
         <hr>
@@ -84,10 +86,10 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col">
-                    <label class="form-label" for="office_visited">Select Office:</label>
-                    <select name="office_visited" id="office_visited" class="form-control">
+            <div class="row p-3">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold" for="office_visited">Select Office:</label>
+                    <select name="office_visited" id="office_visited" class="form-control w-100">
                         <option value="" selected disabled>Select an Office</option>
                         @foreach($offices as $office)
                         <option value="{{ $office->id }}">{{ $office->name }}</option>
@@ -95,10 +97,11 @@
                     </select>
                 </div>
 
-                <div class="col">
-                    <label class="form-label" for="service">Availed Service:</label>
-                    <select name="service" id="service" class="form-control">
-                        <option value="" selected disabled>Select a Service</option>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label fw-bold" for="service">Availed Service:</label>
+                    <select name="service" id="service" class="form-control w-100">
+                        <option value="" selected disabled>Select a service</option>
+                        
                     </select>
                 </div>
             </div>
@@ -110,54 +113,5 @@
         </form>
     </div>
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        document.getElementById('office_visited').addEventListener('change', function() {
-            var officeId = this.value;
-
-            if (officeId) {
-                console.log('Fetching services for Office ID:', officeId);
-
-                fetch(`/get-services/${officeId}`, {
-                        headers: {
-                            "Accept": "application/json"
-                        }
-                    })
-                    .then(response => {
-                        console.log('Response status:', response.status);
-                        return response.text(); 
-                    })
-                    .then(text => {
-                        try {
-                            const data = JSON.parse(text);
-                            console.log('Fetched Services:', data);
-                            updateServicesDropdown(data);
-                        } catch (error) {
-                            console.error('Invalid JSON response:', text);
-                        }
-                    })
-                    .catch(error => console.error('Error fetching services:', error));
-            }
-        });
-
-        function updateServicesDropdown(data) {
-            const servicesSelect = document.getElementById('service');
-            servicesSelect.innerHTML = '<option value="" selected disabled>Select a Service</option>';
-
-            if (!data.services || data.services.length === 0) {
-                console.warn("No services available.");
-                return;
-            }
-
-            data.services.forEach(service => {
-                const option = document.createElement('option');
-                option.value = service.id;
-                option.textContent = service.name;
-                servicesSelect.appendChild(option);
-            });
-        }
-    });
-</script>
 
 @endsection

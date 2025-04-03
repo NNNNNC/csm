@@ -1,6 +1,6 @@
 @extends('layout.app')
 
-@section('title', 'Client Satisfaction Survey - Step 2')
+@section('title', 'Survey - Step 2')
 
 @section('content')
 <style>
@@ -24,7 +24,7 @@
         border-color: #0D6EFD;
     }
 </style>
-<div class="d-flex justify-content-center align-items-center" style="margin-top: 150px; padding-bottom: 50px;">
+<div class="d-flex justify-content-center align-items-center p-5" style="margin-top: 150px; padding-bottom: 50px;">
     <div class="container shadow p-5 rounded bg-white" style="max-width: 800px;">
         <h1 class="text-center mb-4">Client Satisfaction Survey - Step 2</h1>
         <hr>
@@ -108,65 +108,6 @@
         </form>
     </div>
 </div>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const checkboxGroups = {
-            awareness: document.querySelectorAll(".awareness"),
-            visibility: document.querySelectorAll(".visibility"),
-            helpfulness: document.querySelectorAll(".helpfulness")
-        };
-
-        function allowSingleCheckbox(group) {
-            group.forEach(checkbox => {
-                checkbox.addEventListener("change", function() {
-                    if (this.checked) {
-                        group.forEach(cb => {
-                            if (cb !== this) {
-                                cb.checked = false;
-                            }
-                        });
-                    }
-                });
-            });
-        }
-
-        Object.values(checkboxGroups).forEach(group => allowSingleCheckbox(group));
-
-        const a4 = document.getElementById("a4");
-        const visibilityCheckboxes = checkboxGroups.visibility;
-        const helpfulnessCheckboxes = checkboxGroups.helpfulness;
-        const hiddenVisibility = document.getElementById("hidden_visibility");
-        const hiddenHelpfulness = document.getElementById("hidden_helpfulness");
-
-        checkboxGroups.awareness.forEach(checkbox => {
-            checkbox.addEventListener("change", function() {
-                if (this === a4 && this.checked) {
-                    visibilityCheckboxes.forEach(cb => {
-                        cb.checked = false;
-                        cb.disabled = true;
-                    });
-                    helpfulnessCheckboxes.forEach(cb => {
-                        cb.checked = false;
-                        cb.disabled = true;
-                    });
-                    hiddenVisibility.value = "0";
-                    hiddenHelpfulness.value = "0";
-                } else if (this !== a4 && this.checked) {
-                    a4.checked = false;
-                    visibilityCheckboxes.forEach(cb => cb.disabled = false);
-                    helpfulnessCheckboxes.forEach(cb => cb.disabled = false);
-                }
-            });
-        });
-
-        if (a4.checked) {
-            visibilityCheckboxes.forEach(cb => cb.disabled = true);
-            helpfulnessCheckboxes.forEach(cb => cb.disabled = true);
-            hiddenVisibility.value = "0";
-            hiddenHelpfulness.value = "0";
-        }
-    });
-</script>
 
 
 @endsection

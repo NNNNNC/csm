@@ -63,24 +63,55 @@ class SurveyController extends Controller
     {
         Log::info('Attempting to store step 1 data.', ['data' => $request->all()]);
 
+        // Validation
         $validatedData = $request->validate([
             'client_type' => 'required|string',
             'date' => 'required|date',
             'age' => 'required|integer|min:0|max:120',
             'sex' => 'required|string',
-            'office_visited' => 'required|integer|min:0|max:1000',
-            'service' => 'required|integer|min:0|max:1000',
+            'office_visited' => 'required|string',
+            'service' => 'required|string',
         ]);
 
+        // Step 1: Handle Office Selection/Input
+        if (ctype_digit($validatedData['office_visited'])) { // Check if it is numeric (ID)
+            $office = Office::findOrFail((int) $validatedData['office_visited']); // Convert to integer
+        } else {
+            $office = Office::firstOrCreate(['name' => trim($validatedData['office_visited'])]);
+        }
+
+        // Step 2: Handle Service Selection/Input
+        if (ctype_digit($validatedData['service'])) { // Check if it is numeric (ID)
+            $service = Services::findOrFail((int) $validatedData['service']); // Convert to integer
+        } else {
+            $service = Services::firstOrCreate([
+                'name' => trim($validatedData['service']),
+                'office_id' => $office->id,
+            ]);
+        }
+
+        // Step 3: Store Data in Session (Save IDs Instead of Names)
         $surveyData = session('survey_data', []);
-        $surveyData = array_merge($surveyData, $validatedData);
+        $surveyData['client_type'] = $validatedData['client_type'];
+        $surveyData['date'] = $validatedData['date'];
+        $surveyData['age'] = $validatedData['age'];
+        $surveyData['sex'] = $validatedData['sex'];
+
+        // ✅ Store Office ID if selected, otherwise create new entry
+        $surveyData['office_visited'] = $office->id;
+
+        // ✅ Store Service ID if selected, otherwise create new entry
+        $surveyData['service'] = $service->id;
 
         session(['survey_data' => $surveyData]);
 
-        Log::info('Step 1 data stored successfully.', ['session_data' => $surveyData]);
+        Log::info('Step 1 data stored in session.', ['session_data' => $surveyData]);
 
         return redirect()->route('survey.step2')->with('success', 'Step 1 completed successfully!');
     }
+
+
+
 
     public function storeStep2(Request $request): RedirectResponse
     {

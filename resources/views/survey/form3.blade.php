@@ -1,5 +1,5 @@
     @extends('layout.app')
-
+    @section('title', 'Survey - Step 3')
     @section('content')
 
     <style>
@@ -118,14 +118,4 @@
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const form = document.querySelector("form");
-            const submitBtn = document.getElementById("submitBtn");
-
-            form.addEventListener("submit", function() {
-                submitBtn.disabled = true;
-            });
-        });
-    </script>
     @endsection

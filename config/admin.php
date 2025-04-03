@@ -12,7 +12,7 @@ return [
     | login page.
     |
     */
-    'name' => 'Survey Admin',
+    'name' => '',
 
     /*
     |--------------------------------------------------------------------------
@@ -314,7 +314,7 @@ return [
     | This value is used to set the background image of login page.
     |
     */
-    'login_background_image' => '',
+    'login_background_image' => '/images/bg12.png',
 
     /*
     |--------------------------------------------------------------------------

@@ -13,8 +13,18 @@ class DashboardController extends AdminController
 {
     public function index(Content $content)
     {
-        $offices = Office::all(); // Fetch all offices for filtering
-        $totalSurveys = Survey::count(); // Total number of surveys
+        // Fetch all offices and survey count
+        $offices = Office::all();
+        $totalSurveys = Survey::count();
+
+        // Check if we need to reload the page
+        if (session()->has('reload')) {
+            // After reloading, remove the session flag to avoid multiple reloads
+            session()->forget('reload');
+        } else {
+            // Flash the reload session variable only on the first visit
+            session()->flash('reload', true);
+        }
 
         return $content
             ->title('Dashboard')
@@ -63,11 +73,9 @@ class DashboardController extends AdminController
 
         // Query for client type count per month
         $clientTypeData = DB::table('surveys')
-            ->selectRaw('MONTH(date) as month, client_type, COUNT(*) as count')
-            ->whereYear('date', 2024)
+            ->selectRaw('client_type, COUNT(client_type) as total_client')
             ->when($officeId, fn($query) => $query->where('office_visited', $officeId))
-            ->groupBy('month', 'client_type')
-            ->orderBy('month')
+            ->groupBy('client_type')
             ->get();
 
         // Count total males and females separately
