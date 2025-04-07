@@ -3,9 +3,9 @@
 
 ## Run these on command line after cloning
 
-cp .env.example .env
-composer install
-php artisan key:generate
-php artisan admin:install
-php artisan migrate
-php artisan db:seed
+- cp .env.example .env
+- composer install
+- php artisan key:generate
+- php artisan admin:install
+- php artisan migrate
+- php artisan db:seed
