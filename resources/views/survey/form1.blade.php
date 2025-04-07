@@ -32,7 +32,7 @@
     }
 </style>
 
-<div class="d-flex justify-content-center align-items-center p-5" style="margin-top: 150px;">
+<div class="d-flex justify-content-center align-items-center p-5">
     <div class="container shadow p-4 rounded bg-white" style="max-width: 800px;">
         <h1 class="text-center">Client Satisfaction Survey - Step 1</h1>
         <hr>

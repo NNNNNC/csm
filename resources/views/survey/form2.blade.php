@@ -24,7 +24,7 @@
         border-color: #0D6EFD;
     }
 </style>
-<div class="d-flex justify-content-center align-items-center p-5" style="margin-top: 150px; padding-bottom: 50px;">
+<div class="d-flex justify-content-center align-items-center p-5">
     <div class="container shadow p-5 rounded bg-white" style="max-width: 800px;">
         <h1 class="text-center mb-4">Client Satisfaction Survey - Step 2</h1>
         <hr>

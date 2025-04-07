@@ -59,6 +59,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        
+        'admin' => [
+            'driver' => 'local',
+            'root' => storage_path('app/admin'),
+            'visibility' => 'private',
+            'throw' => false,
+            'report' => false,
+        ],
 
     ],
 

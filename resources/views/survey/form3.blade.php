@@ -3,38 +3,29 @@
     @section('content')
 
     <style>
-        /* Custom styling for radio buttons */
         .form-check-input {
             width: 20px;
             height: 20px;
             border: 2px solid #000;
-            /* Black border for visibility */
             background-color: #fff;
-            /* White background */
             appearance: none;
-            /* Remove default styling */
             border-radius: 50%;
-            /* Make it circular */
             outline: none;
             cursor: pointer;
             transition: 0.2s all ease-in-out;
         }
 
-        /* Change border color on hover */
         .form-check-input:hover {
             border-color: #007bff;
-            /* Bootstrap primary color */
         }
 
-        /* Style for checked radio button */
         .form-check-input:checked {
             background-color: #007bff;
-            /* Blue fill when selected */
             border-color: #007bff;
             box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
     </style>
-    <div class="container" style="margin-top: 140px;">
+    <div class="container p-5">
         <div class="card mt-4 p-4 shadow">
             <div class="card-body">
                 <h1 class="text-center mb-4">Client Satisfaction Survey - Step 3</h1>
@@ -118,4 +109,31 @@
             </div>
         </div>
     </div>
+    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let lastClicked = null;
+
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('mousedown', function(e) {
+                    // Save the radio that was clicked and its checked status
+                    lastClicked = {
+                        element: radio,
+                        wasChecked: radio.checked
+                    };
+                });
+
+                radio.addEventListener('click', function(e) {
+                    // If the same radio was clicked again and was checked, uncheck it
+                    if (lastClicked && lastClicked.element === radio && lastClicked.wasChecked) {
+                        setTimeout(() => {
+                            radio.checked = false;
+                        }, 0);
+                    }
+                });
+            });
+        });
+    </script>
+
+
     @endsection

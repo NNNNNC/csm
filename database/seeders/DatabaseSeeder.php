@@ -8,7 +8,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $this->call(SurveySeeder::class);
-        
+        $this->call(OfficesSeeder::class);
+        $this->call(AdminMenuSeeder::class);
     }
 }
